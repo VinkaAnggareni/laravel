@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Barang;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -13,7 +13,10 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('admin.tescontent');//
+        $title='Barang';
+        $tesconten=Barang::paginate(5);
+       // dd($barang);
+        return view('admin.tescontent',compact('title','tesconten'));//
     }
 
     /**
@@ -23,7 +26,8 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $title='Input Pembeli';
+        return view('admin.inputbarang',compact('title','barang'));
     }
 
     /**
@@ -34,7 +38,21 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $messages = [
+            'required'=> 'Kolom: atribute harus lengkap',
+            'date'=> 'Kolom: atribute harus Tanggal',
+            'numeric'=> 'Kolom: atribute harus Angka', 
+        ];
+        $validasi = $request->validate([
+            'id_pembeli'=>'required',
+            'nama'=>'required',
+            'alamat'=>'required',
+            'no_hp'=>'required',
+        ],$messages);
+        Barang::create($validasi);
+        return redirect('barang')->with('succses','Data berhasil diupdate');
+
     }
 
     /**
@@ -56,7 +74,9 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title='Input Pembeli';
+        $barang= Barang::find($id);
+        return view('admin.inputbarang',compact('title','barang'));
     }
 
     /**
@@ -68,7 +88,19 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required'=> 'Kolom: atribute harus lengkap',
+            'date'=> 'Kolom: atribute harus Tanggal',
+            'numeric'=> 'Kolom: atribute harus Angka', 
+        ];
+        $validasi = $request->validate([
+            'id_pembeli'=>'required',
+            'nama'=>'required',
+            'alamat'=>'required',
+            'no_hp'=>'required',
+        ],$messages);
+        Barang::whereid_pembeli($id)->update($validasi);
+        return redirect('barang')->with('succses','Data berhasil diupdate');
     }
 
     /**
@@ -79,6 +111,7 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Barang::whereid_pembeli($id)->delete();
+        return redirect('barang')->with('succses','Data berhasil diupdate');
     }
 }
