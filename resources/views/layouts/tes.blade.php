@@ -56,22 +56,24 @@
               </ul>
 
               <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="user-name"><span>Vinka Anggareni</span></li>
-                  <li class="dropdown avatar-dropdown">
-                   <img src="{{asset('asset/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-                   <ul class="dropdown-menu user-dropdown">
-                     <li><a href="#"><span class="fa fa-user"></span> My Profile</a></li>
-                     <li><a href="#"><span class="fa fa-calendar"></span> My Calendar</a></li>
-                     <li role="separator" class="divider"></li>
-                     <li class="more">
-                      <ul>
-                        <li><a href=""><span class="fa fa-cogs"></span></a></li>
-                        <li><a href=""><span class="fa fa-lock"></span></a></li>
-                        <li><a href=""><span class="fa fa-power-off "></span></a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+                <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        
                 <li ><a href="#" class="opener-right-menu"><span class="fa fa-coffee"></span></a></li>
               </ul>
             </div>

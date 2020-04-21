@@ -17,3 +17,11 @@ Route::get('/', function () {
 Route:: resource('barang','BarangController');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'BarangController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/nonadmin', 'NonadminController@index')->name('home');
