@@ -2,7 +2,7 @@
 @section('content')
 <div class="panel-body">
          <div class="col lg 12">
-         <h1> Daftar Non Admin</h1>
+         <h1> Non Admin </h1>
         <table class="table bordered">
             <tr>
                 <td width="400"><br> BIODATA</br></td>

@@ -20,7 +20,7 @@ class NonadminController extends Controller
 
     public function index()
     {
-        $title='nonadmin';
+        $title='Nonadmin';
     
         return view('admin.nonadmin',compact('title'));//
     }

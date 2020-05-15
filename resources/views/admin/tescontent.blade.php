@@ -1,5 +1,6 @@
 @extends('layouts.tes')
 @section('content')
+
 <div class="panel">
      <div class="panel-body">
          <div class="col lg 12">
@@ -12,12 +13,12 @@
             </tr>
             <tr>
                 <td><br> NAMA  : NENGAH AYU VINKA ANGGARENI</br></td>
-                <td><br> JUDUL : Sistem Manajemen Toko Kelontong(SJubel)</br></td>
+                <td><br> JUDUL : Sistem Manajemen Toko Kelontong</br></td>
 
             </tr>
             <tr>
                 <td><br> NIM  : 1815051073</br></td>
-                <td><br> PENJELASAN :SJubel merupakan kepanjangan dari sistem jual beli, dimana sistem tersebut akan digunakan dalam transaksi jual beli pada toko kelontong </br></td>
+                <td><br> PENJELASAN :Sistem Manajemen Toko Kelontong merupakan sistem yang akan digunakan dalam transaksi jual beli pada toko kelontong </br></td>
 
             </tr>
             <tr>
@@ -34,13 +35,13 @@
         <a href="{{route('barang.create')}}">Tambah Data</a>
         <table class="table table-bordered">
             <thead>
-                <tr><th>No</th><th>Id_pembeli</th><th>Nama</th><th>Alamat</th><th>No_hp</th></tr>
+                <tr><th>No</th><th>Id Pembeli</th><th>Nama Pembeli</th><th>Alamat</th><th>No Hp</th><th>Aksi</th></tr>
             </thead>
             <tbody>
                 @foreach ( $tesconten as $in=>$val )
                 <tr>
                 <td>{{($in+1)}}</td><td> {{$val->id_pembeli}}</td><td>{{$val->nama}}</td><td>{{$val->alamat}}</td><td>{{$val->no_hp}}</td>
-            </tr>
+            
             <td>
            <a href = "{{route('barang.edit',$val->id_pembeli)}}">Update</a>
                    <form action="{{route('barang.destroy',$val->id_pembeli)}}"method="POST">
